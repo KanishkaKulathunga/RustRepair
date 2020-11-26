@@ -1,0 +1,114 @@
+create table rust_repair.manager(
+empID varchar(5),
+name varchar(50),
+NIC varchar(13),
+DOB varchar(10),
+email varchar(50),
+password varchar(8) not null,
+constraint Manager_pk primary key (empID)
+);
+
+insert into rust_repair.manager values('nimesh',9876789,23,'test@gmaiol.com','M001','n1234');
+
+insert into rust_repair.manager values('kanishka',234489,21,'testdd@gmaiol.com','M002','kn220');
+
+
+create table rust_repair.receptionist(
+empID varchar(5),
+name varchar(50),
+NIC varchar(13),
+DOB varchar(10),
+email varchar(50),
+password varchar(8) not null,
+constraint Receptionist_pk primary key(empID)
+);
+
+insert into rust_repair.receptionist values('lakshan',3456,23,'test2@gmaiol.com','R001','l1234');
+
+insert into rust_repair.receptionist values('adhil',34566,19,'tefghg@gmaiol.com','R002','adhil');
+
+
+
+create table rust_repair.jobs(
+ID varchar(5),
+Name varchar(20),
+Address varchar(100),
+Vehicle_Model varchar(15),
+Vehicle_Number varchar(10),
+Arrival_Date date,
+Depature_Date date,
+Telephone varchar(10),
+Price float,
+constraint jobs_prKey primary key(ID)
+);
+
+insert into rust_repair.jobs values('john','J001','245/B Kandy','Toyota','CAE1680','22-10-2019','22-11-2019','0710000000',50000)
+insert into rust_repair.jobs values('kim','J002','222/A malwaththa Kandy','Toyota','PA2292','5-11-2019','2-1-2020','0712222222',60000)
+insert into rust-repair.jobs values('biden','J003','223/B kandy','Three wheeler','PA1111','20-12-2019','1-1-2020','0720000000',10000)
+insert into rust_repair.jobs values('ruby','J004','22/street 2 kandy','Audi','CAE1111','22-11-2019','22-1-2020','0760000001,40000)
+insert into rust_repair.jobs values('seldon','J005','34/A colombo',''BMW','CAE333','5-05-2020','7-11-2020','0812323239',100000)
+insert into rust_repair.jobs values('cooper','J006','412/lake street colombo',Toyota','CAP1290','6-11-2019','6-12-2019',20000)
+insert into rust_repair.jobs values('jenny','J007','23/A colombo','Ford','CAE2222','10-11-2019','2-1-2020',50000)
+insert into rust_repair.jobs values('jessie','J008','22/B colombo','Ford','CAP333',''10-11-2019','3-3-2020',100000)
+
+
+create table rust_repair.employee(
+Name varchar(50),
+NIC varchar(13),
+Salary float,
+Availability varchar(5) default 'Yes',
+constraint employee_pk primary key(NIC),
+constraint avl_check check(Availability in('Yes','No'))
+);
+
+
+insert into rust_repair.employee values('jon','97123456789V',10000.00,'YES')
+insert into rust_repair.employee values('sasha','951212121222V',15000.00,'YEs')
+insert into rust_repair.employee values('kevin',93111111111V',20000.00,'YEs')
+insert into rust_repair.employee values('eren','94222222222V',18000.00,'YES')
+insert into rust_repair.employee values('jill','94222222223V',17000.00,'YEs')
+insert into rust_repair.employee values('Bill','95333333333V',18000.00','YES')
+insert into rust_repair.employee values('bob','99000001111V',15000.00,'YES')
+insert into rust_repair.employee values('jim','98000001111V',10000.00,'YES')
+insert into rust_repair.employee values('john','99999999999V,10000.00,'YES')
+insert into rust_repair.employee values('jon','88888888888V',10000.00,'YES')
+insert into rust_repair.employee values('duncan',77777777777V,12000.00,'YES')
+insert into rust_repair.employee values('jessi','96666666666V',12000.00,'YES')
+
+
+
+create table rust_repair.WorkAllocation(
+Job_ID varchar(5),
+NIC varchar(13),
+constraint employee_fk foreign key(NIC) references employee(NIC),
+constraint jobs_fk foreign key(Job_ID) references jobs(ID)
+);
+
+
+
+CREATE TABLE rust_repair.supplies (
+sparepartID varchar(5),
+sparepart_name varchar(30),
+quantity int,
+price float,
+tot_price float,
+supply_date date,
+constraint supplies_pk primary key(sparepartID)
+);
+
+insert into rust_repairs.supplies values('S001','Tyre',20,1000.00,'12-11-2019')
+insert into rust_repairs.supplies values('S002','Engine',5,5000.00,'2-11-2019')
+insert into rust_repairs.supplies values('S003','Doors',5,4000.00,'3-11-2019')
+insert into rust_repairs.supplies values('S004','Bolts',1000,5.00,5-5-2020')
+
+
+create table rust_repair.supplier(
+SID varchar(5),
+Supplier varchar(50),
+ContactNo varchar(10),
+Spare_parts varchar(50),
+SDate date,
+constraint Supplier_pk primary key (SID)
+);
+
+insert into rust_repair.supplier values('Sup001','DSI','0761111222','tyres','11-11-2019')
